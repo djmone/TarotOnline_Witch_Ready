@@ -152,13 +152,14 @@ def build_step_prompt(session, index, lang='ru', last=False):
             "'But the shadow has not spoken its last word yet...'."
         )
 
+    rev_for_prompt = not bool(it.get('reversed', False))
     try:
         card = Card.objects.get(deck=session.deck, code=it['code'])
         card_name = card.name_ru or card.name_en
     except:
         card_name = it['code']
 
-    if it['reversed']:
+    if rev_for_prompt:
         card_name += " (перевёрнутая)"
 
     user_msg = (
