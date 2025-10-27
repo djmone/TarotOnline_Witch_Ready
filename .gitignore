@@ -59,3 +59,38 @@ pnpm-debug.log*
 *.code-workspace
 .DS_Store
 Thumbs.db
+
+# Python / Django
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+db.sqlite3
+*.log
+
+# Virtualenv / poetry
+.env
+.venv/
+venv/
+env/
+poetry.lock
+
+# Django collected static & media
+staticfiles/
+static_root/
+media/
+media_root/
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node (если когда-то появится)
+node_modules/
