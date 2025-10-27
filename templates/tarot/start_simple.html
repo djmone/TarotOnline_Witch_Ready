@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="h1">{{ preset.name }}</h1>
+<form method="post" class="card form">{% csrf_token %}
+  <label>Имя <input name="p1_name" required></label>
+  <label>Дата рождения (опц.) <input type="date" name="p1_dob"></label>
+  {% if preset.mode == 'couple' %}
+  <div class="cols">
+    <label>Имя партнёра <input name="p2_name"></label>
+    <label>Дата рождения партнёра <input type="date" name="p2_dob"></label>
+  </div>
+  {% endif %}
+  {% if preset.allow_extra_questions %}
+  <label>Доп. вопросы<textarea name="extra_questions" rows="3"></textarea></label>
+  {% endif %}
+  <fieldset class="radio">
+    <legend>Режим показа</legend>
+    <label><input type="radio" name="reveal_mode" value="step" checked> По одной карте</label>
+    <label><input type="radio" name="reveal_mode" value="all"> Все сразу</label>
+  </fieldset>
+  <button class="btn">Подтвердить</button>
+</form>
+{% endblock %}

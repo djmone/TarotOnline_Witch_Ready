@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="h1">Результат</h1>
+<article class="card">
+  <pre class="reading">{{ reading }}</pre>
+</article>
+{% endblock %}
+{% if prompt %}
+<details class="card" style="margin-top:12px">
+  <summary style="cursor:pointer">Показать полный prompt → LLM</summary>
+  <pre style="white-space:pre-wrap; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:13px; line-height:1.35; margin-top:8px;">
+{{ prompt }}
+  </pre>
+</details>
+{% endif %}

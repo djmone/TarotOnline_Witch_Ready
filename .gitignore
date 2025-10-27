@@ -1,0 +1,7 @@
+/.env.example
+/.venv
+/db.sqlite3
+/docker
+/docker-compose.yml
+/media
+/TarotOnline_Witch_Ready.zip

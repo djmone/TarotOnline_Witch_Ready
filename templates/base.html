@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="ru" class="theme-witch">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TarotOnline</title>
+  <link rel="stylesheet" href="/static/tarot/css/witch.css">
+  <!-- Real Three.js CDN (optional). If offline, local stub will be used below. -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script>window.THREE || document.write('<script src="/static/tarot/vendor/three.min.js"><\/script>')</script>
+</head>
+<body class="bg">
+  <header class="wrap header">
+    <a href="/" class="brand">TarotOnline</a>
+    <nav class="nav">
+      {% if request.user.is_authenticated %}
+        <span class="hello">Привет, {{ request.user.username }}</span>
+        <a class="link" href="/accounts/logout/">Выйти</a>
+      {% else %}
+        <a class="link" href="/accounts/login/">Войти</a>
+        <a class="link" href="/accounts/register/">Регистрация</a>
+      {% endif %}
+      <a class="link" href="/admin/">Админка</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="wrap footer">© TarotOnline — для развлечения</footer>
+</body>
+</html>

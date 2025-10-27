@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="h1">{{ preset.name }}</h1>
+<p class="muted xs">Commit: <code>{{ session.seed_hash }}</code></p>
+<div class="stage">
+  <div id="three-root"
+       data-count="{{ preset.cards_count }}"
+       data-deal-url="{% url 'tarot:deal' session.id %}"
+       data-back-url="{{ deck.back_image.url }}">
+  </div>
+</div>
+
+<div class="actions">
+  <button id="btn-shuffle" class="btn ghost">Перемешать</button>
+  <button id="btn-deal" class="btn">Выложить</button>
+  {% if session.reveal_mode == 'all' %}
+    <a class="btn ok" href="{% url 'tarot:interpret_full' session.id %}">Показать интерпретацию</a>
+  {% else %}
+    <button id="btn-next" class="btn ok">Следующая карта</button>
+  {% endif %}
+</div>
+{% if session.reveal_mode == 'step' %}
+<div id="step-box" class="card" style="min-height:120px"></div>
+<script>
+  let currentIndex = -1;
+  async function nextCard() {
+    currentIndex += 1;
+    const url = "{% url 'tarot:interpret_step' session.id %}?index=" + currentIndex;
+    const resp = await fetch(url);
+    if (!resp.ok) { document.getElementById('step-box').innerText = 'Готово.'; return; }
+    const data = await resp.json();
+    document.getElementById('step-box').innerText = data.text;
+  }
+  document.getElementById('btn-next')?.addEventListener('click', nextCard);
+</script>
+{% endif %}
+<script src="/static/tarot/js/shuffle3d.js"></script>
+{% endblock %}

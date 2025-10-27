@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="h1">Выбери пресет</h1>
+<div class="grid">
+  {% for p in presets %}
+  <div class="card">
+    <div class="card-title">{{ p.name }}</div>
+    <div class="muted">Карт: {{ p.cards_count }}</div>
+    <a class="btn mt" href="{% url 'tarot:start' p.slug %}">Начать</a>
+  </div>
+  {% empty %}
+  <div class="card">Нет пресетов. Запусти <code>init_defaults</code>.</div>
+  {% endfor %}
+</div>
+{% endblock %}
