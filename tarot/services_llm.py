@@ -74,15 +74,16 @@ def build_full_prompt(session, lang='ru'):
     # список карт кодами (как у тебя уже было)
     card_lines = []
     for it in cards:
+        # инвертируем только для промпта — сейчас серверный флаг и визуал расходятся
+        rev_for_prompt = not bool(it.get('reversed', False))
         try:
             card = Card.objects.get(deck=session.deck, code=it['code'])
             name = card.name_ru or card.name_en
-            if it['reversed']:
-                name = name + " (перевёрнутая)"
+            if rev_for_prompt:
+                name += " (перевёрнутая)"
             card_lines.append(name)
         except:
-            # fallback, если нет в базе
-            card_lines.append(it['code'] + (" (перевёрнутая)" if it['reversed'] else ""))
+            card_lines.append(it['code'] + (" (перевёрнутая)" if rev_for_prompt else ""))
 
     person = session.p1_name or ""
     if session.p1_dob:

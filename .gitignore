@@ -1,7 +1,61 @@
-/.env.example
-/.venv
-/db.sqlite3
-/docker
-/docker-compose.yml
-/media
-/TarotOnline_Witch_Ready.zip
+# --- Python / Django ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# venv
+.venv/
+venv/
+env/
+
+# Django local settings / secrets
+.env
+.env.*
+*.pem
+*.key
+certs/
+secrets/
+settings_local.py
+local.py
+
+# SQLite & dumps
+db.sqlite3
+*.sqlite3*
+*.db
+*.sql
+*.dump
+dump/
+
+# User uploads
+media/
+
+# Collected static
+staticfiles/
+static_root/
+
+# Logs & reports
+*.log
+logs/
+.coverage*
+htmlcov/
+
+# --- JS / Frontend ---
+node_modules/
+dist/
+build/
+.parcel-cache/
+.vite/
+.next/
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# (lock-файл лучше КОММИТИТЬ)
+# package-lock.json / yarn.lock / pnpm-lock.yaml — оставить
+
+# --- IDE / OS ---
+.idea/
+.vscode/
+*.code-workspace
+.DS_Store
+Thumbs.db
